@@ -1,0 +1,183 @@
+/* ================= GLOBAL ================= */
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0F7C7B, #0A5F5E);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ================= MAIN CONTAINER ================= */
+.container {
+  max-width: 1200px;
+  width: 95%;
+  background: #52be7b;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  text-align: center;
+  position: relative;
+}
+
+/* ================= LOGO ================= */
+.vyn {
+  width: 90px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+/* ================= HEADINGS ================= */
+h2 {
+  color: #0F7C7B;
+  margin-bottom: 20px;
+}
+
+/* ================= BUTTONS ================= */
+button {
+  background: #0F7C7B;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 10px 22px;
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #0A5F5E;
+}
+
+/* ================= BACK BUTTON ================= */
+.back {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  padding: 6px 14px;
+  font-size: 14px;
+}
+
+/* ================= BATTERY INPUT ================= */
+.battery-inputs {
+  margin: 15px 0;
+  background: #E6F3F2;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.battery-inputs label {
+  font-weight: bold;
+  color: #0F7C7B;
+}
+
+.battery-inputs input {
+  width: 90px;
+  padding: 6px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid #0F7C7B;
+  text-align: center;
+}
+
+/* ================= CELL CALCULATOR LAYOUT ================= */
+.calculators {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* LANDSCAPE */
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* ================= INDIVIDUAL CALCULATOR ================= */
+.calculator {
+  background: #E6F3F2;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.calculator label {
+  display: block;
+  margin-top: 8px;
+  font-weight: bold;
+  color: #0F7C7B;
+}
+
+.calculator input {
+  width: 95%;
+  padding: 6px;
+  margin-top: 4px;
+  border-radius: 6px;
+  border: 1px solid #7a8a8a;
+  text-align: center;
+}
+
+.calculator button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* ================= RESULT BOX ================= */
+.result {
+  margin-top: 12px;
+  background: #108132;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* ================= GRAND TOTAL ================= */
+.grand-total {
+  margin-top: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #0F7C7B;
+}
+
+/* ================= BHK BUTTONS ================= */
+.bhk-box {
+  display: flex;
+  gap: 12px;
+  margin: 15px 0;
+}
+
+.bhk-box button {
+  flex: 1;
+  background: #1e88e5;
+}
+
+.bhk-box button:hover {
+  background: #0d47a1;
+}
+
+/* ================= WHATSAPP FLOAT ================= */
+.whatsapp_float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+}
+
+.whatsapp_float img {
+  width: 100%;
+}
+
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+  .calculators {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .calculators {
+    grid-template-columns: 1fr;
+  }
+}

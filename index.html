@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VYN Calculator</title>
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<link rel="stylesheet" href="script.css">
+</head>
+
+<body>
+
+<!-- ================= HOME PAGE ================= -->
+<div id="homePage" class="container">
+  <img src="/assert/vynlogo.jpeg" class="vyn">
+  <h2>VYN – Vision Your Next</h2>
+
+  <button onclick="openWattage()">⚡ Wattage Calculator</button>
+  <br><br>
+  <button onclick="openCell()">🔋 Cell Calculator</button>
+</div>
+
+<!-- WATTAGE CALCULATOR -->
+<div id="wattagePage" class="container" style="display:none;">
+  <button class="back" onclick="goHome()">⬅ Back</button>
+
+  <h2>Wattage Calculator</h2>
+  <!-- ===== BHK QUICK ADD ===== -->
+<div class="bhk-box">
+  <button onclick="loadBHK('1bhk')">🏠 1 BHK</button>
+  <button onclick="loadBHK('2bhk')">🏠 2 BHK</button>
+  <button onclick="loadBHK('3bhk')">🏠 3 BHK</button>
+</div>
+
+
+
+  <table id="applianceTable">
+    <tr>
+      <th>Appliance</th>
+      <th>Watt</th>
+      <th>Qty</th>
+    </tr>
+    <tr><td>LED Bulb</td><td><input class="watt" value="10"></td><td><input class="qty" value="1"></td></tr>
+    <tr><td>LED Tube</td><td><input class="watt" value="20"></td><td><input class="qty" value="1"></td></tr>
+    <tr><td>Computer</td><td><input class="watt" value="75"></td><td><input class="qty" value="1"></td></tr>
+    <tr><td>Wifi Router</td><td><input class="watt" value="120"></td><td><input class="qty" value="1"></td></tr>
+    <tr><td>Fridge</td><td><input class="watt" value="120"></td><td><input class="qty" value="1"></td></tr>
+    <tr><td>Fan</td><td><input class="watt" value="120"></td><td><input class="qty" value="1"></td></tr>
+    <tr><td>TV</td><td><input class="watt" value="120"></td><td><input class="qty" value="1"></td></tr>
+  </table>
+
+  <!-- Existing calculate button -->
+  <button onclick="calculate()">Calculate</button>
+
+  <!-- Export / Import Buttons -->
+  <button onclick="exportWattageExcel()">Export to Excel</button>
+  <input type="file" id="importFile" accept=".xlsx" onchange="importWattageExcel()">
+
+  <div class="battery-inputs">
+    <label>Voltage</label>
+    <input id="voltage" value="12">
+    <label>Ah</label>
+    <input id="capacity" value="100">
+  </div>
+
+  <div class="result">
+    Battery: <span id="batteryWh">0</span> Wh<br>
+    Backup Time : <span id="backupTime">0</span> Hrs<br>
+    Battery Pack : <span id="batteryUsed">-</span>
+    <div class="result">
+      Total Load: <span id="totalWatt">0</span> W
+    </div>
+  </div>
+</div>
+
+<!-- XLSX Library (add once) -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+
+<!-- ================= CELL CALCULATOR PAGE ================= -->
+<div id="cellPage" class="container" style="display:none;">
+  <button class="back" onclick="goHome()">⬅ Back</button>
+
+  <h2>Cell Calculator</h2>
+
+  <div class="calculators">
+    <div class="calculator" id="calc1">
+      <h3>Calculator 1</h3>
+      <label>Cell Voltage</label><input class="cellV" placeholder="3.2">
+      <label>Cell Ah</label><input class="cellAh" placeholder="15">
+      <label>Pack Voltage</label><input class="packV" placeholder="48">
+      <label>Pack Ah</label><input class="packAh" placeholder="45">
+      <button onclick="calculateCalc('calc1')">Calculate</button>
+      <div class="result">
+        Series: <span class="s">-</span> | Parallel: <span class="p">-</span> | Total: <span class="t">-</span>
+      </div>
+    </div>
+
+    <div class="calculator" id="calc2">
+      <h3>Calculator 2</h3>
+      <label>Cell Voltage</label><input class="cellV" placeholder="3.2">
+      <label>Cell Ah</label><input class="cellAh" placeholder="15">
+      <label>Pack Voltage</label><input class="packV" placeholder="48">
+      <label>Pack Ah</label><input class="packAh" placeholder="45">
+      <button onclick="calculateCalc('calc2')">Calculate</button>
+      <div class="result">
+        Series: <span class="s">-</span> | Parallel: <span class="p">-</span> | Total: <span class="t">-</span>
+      </div>
+    </div>
+
+    <div class="calculator" id="calc3">
+      <h3>Calculator 3</h3>
+      <label>Cell Voltage</label><input class="cellV" placeholder="3.2">
+      <label>Cell Ah</label><input class="cellAh" placeholder="15">
+      <label>Pack Voltage</label><input class="packV" placeholder="48">
+      <label>Pack Ah</label><input class="packAh" placeholder="45">
+      <button onclick="calculateCalc('calc3')">Calculate</button>
+      <div class="result">
+        Series: <span class="s">-</span> | Parallel: <span class="p">-</span> | Total: <span class="t">-</span>
+      </div>
+    </div>
+
+    <div class="calculator" id="calc4">
+      <h3>Calculator 4</h3>
+      <label>Cell Voltage</label><input class="cellV" placeholder="3.2">
+      <label>Cell Ah</label><input class="cellAh" placeholder="15">
+      <label>Pack Voltage</label><input class="packV" placeholder="48">
+      <label>Pack Ah</label><input class="packAh" placeholder="45">
+      <button onclick="calculateCalc('calc4')">Calculate</button>
+      <div class="result">
+        Series: <span class="s">-</span> | Parallel: <span class="p">-</span> | Total: <span class="t">-</span>
+      </div>
+    </div>
+
+    <div class="calculator" id="calc5">
+      <h3>Calculator 5</h3>
+      <label>Cell Voltage</label><input class="cellV" placeholder="3.2">
+      <label>Cell Ah</label><input class="cellAh" placeholder="15">
+      <label>Pack Voltage</label><input class="packV" placeholder="48">
+      <label>Pack Ah</label><input class="packAh" placeholder="45">
+      <button onclick="calculateCalc('calc5')">Calculate</button>
+      <div class="result">
+        Series: <span class="s">-</span> | Parallel: <span class="p">-</span> | Total: <span class="t">-</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grand-total">
+    <h3>Grand Total Cells: <span id="grandTotal">-</span></h3>
+  </div>
+  <button onclick="exportExcel()">Export to Excel</button>
+<input type="file" id="importFile" accept=".xlsx,.xls" onchange="importExcel()" />
+<!-- ===== BMS & CHARGER SELECTION ===== -->
+<!-- ===== BMS & CHARGER SELECTION ===== -->
+<div class="card" id="bmsSection">
+  <h3>BMS & Charger Recommendation</h3>
+
+  <label>Battery Voltage (V)</label>
+  <input type="number" id="batteryVolt" value="60">
+
+  <label>Battery Capacity (Ah)</label>
+  <input type="number" id="batteryAh" value="60">
+
+  <label>Cell Type</label>
+  <select id="cellType">
+    <option value="lion">Li-ion (3.7V)</option>
+    <option value="lfp">LFP (3.2V)</option>
+  </select>
+
+  <button onclick="calculateBMSCharger()">Recommend</button>
+
+  <div class="bms-result-box">
+      <p><b>BMS Recommendation:</b> <span id="bmsResult">-</span></p>
+    <p><b>Charger Voltage:</b> <span id="chargerVolt">-</span></p>
+    <p><b>Charger Current:</b> <span id="chargerAmp">-</span></p>
+  </div>
+</div>
+
+
+
+  <div class="result">
+   
+  </div>
+  
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ESS Website</title>
+  <!-- Link external CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+ 
+  <!-- WhatsApp floating button -->
+  <a href="https://wa.me/916380023724?text=Hi,%20I%20want%20to%20know%20about%20your%20ESS" 
+     target="_blank" class="whatsapp_float">
+    <img src="/assert/whatsapp logo.jpeg " alt="WhatsApp Chat" />
+  </a>
+
+  <!-- Link external JS -->
+  <script src="script.js"></script>
+</body>
+</html>
